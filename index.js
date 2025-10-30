@@ -1,15 +1,7 @@
-const express = require('express');
-const { resolve } = require('path');
+const mongoose = require('mongoose');
+const { Course, Student } = require('./schema');
 
-const app = express();
-const port = 3010;
-
-app.use(express.static('static'));
-
-app.get('/', (req, res) => {
-  res.sendFile(resolve(__dirname, 'pages/index.html'));
-});
-
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
+// Connect to MongoDB
+mongoose.connect('mongodb://127.0.0.1:27017/courseDB')
+  .then(() => console.log('MongoDB connected'))
+  .catch((err) => console.log(err));
